@@ -1,0 +1,9 @@
+2025-10-17 14:01:22 INFO  Server started successfully
+2025-10-17 14:01:23 WARNING Low memory detected
+2025-10-17 14:01:24 ERROR  Unable to connect to database
+2025-10-17 14:01:25 INFO  Retrying connection
+2025-10-17 14:01:26 ERROR  Connection timeout
+2025-10-17 14:01:27 INFO  User login successful
+2025-10-17 14:01:28 WARNING Disk usage at 95%
+2025-10-17 14:01:29 ERROR  Failed to write log file
+2025-10-17 14:01:30 INFO  Shutting down

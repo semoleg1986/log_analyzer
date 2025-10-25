@@ -1,4 +1,4 @@
-pytest
+pytestmypy.ini
 
 black
 isort
