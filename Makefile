@@ -2,7 +2,7 @@
 # Run log analyzer
 # ========================
 
-LOG ?= test.log
+LOG ?= data/test.log
 
 run:
 	python main.py --file=$(LOG)

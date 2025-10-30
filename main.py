@@ -2,8 +2,11 @@
 import sys
 from pathlib import Path
 
-from args import parse_args
 from cli import App
+from utils.args import parse_args
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 
 def main():
@@ -21,11 +24,15 @@ def main():
     file_path = Path(args.file)
 
     if not file_path.exists():
-        print(f"Ошибка: файл '{file_path}' не найден.")
+        msg = f"Ошибка: файл '{file_path}' не найден."
+        print(msg)
+        logger.error(msg)
         sys.exit(1)
 
     if file_path.stat().st_size == 0:
-        print(f"Файл '{file_path}' пуст.")
+        msg = f"Файл '{file_path}' пуст."
+        print(msg)
+        logger.warning(msg)
         sys.exit(1)
 
     app = App(args=args)

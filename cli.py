@@ -3,8 +3,11 @@ from typing import TYPE_CHECKING
 
 from tabulate import tabulate
 
-from analyzer import LogAnalyzer
-from args import parse_args
+from core.analyzer import LogAnalyzer
+from utils.args import parse_args
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 if TYPE_CHECKING:
     import argparse
@@ -29,6 +32,11 @@ class App:
         self.args = args or parse_args()
         self.keywords: list[str] = self._keywords()
         self.columns: list[str] = ["FILENAME"] + self.keywords + ["LINES"]
+        logger.info(
+            "CLI App инициализирована с аргументами: file=%s, keywords=%s",
+            self.args.file,
+            self.keywords,
+        )
 
     def run(self) -> None:
         """
@@ -48,12 +56,16 @@ class App:
     def start(self, data: list[str]) -> None:
         analyzer = self.analyzer_cls(data, self.keywords)
         result = analyzer.summary()
+        logger.info("Результат анализа: %s", result)
         table = [
             tuple(
                 [self.filename] + [result[k] for k in self.keywords] + [result["LINES"]]
             )
         ]
         print(tabulate(table, headers=self.columns, tablefmt="grid"))
+        logger.info("Вывод таблицы завершён")
 
     def _keywords(self) -> list[str]:
-        return [keyword.strip() for keyword in self.args.keywords.split(",")]
+        keywords = [kw.strip() for kw in self.args.keywords.split(",")]
+        logger.debug("Парсинг ключевых слов: %s → %s", self.args.keywords, keywords)
+        return keywords

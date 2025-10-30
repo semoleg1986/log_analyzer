@@ -1,4 +1,4 @@
-from analyzer import LogAnalyzer
+from core.analyzer import LogAnalyzer
 
 MOCK_LOGS = [
     "INFO Starting process",

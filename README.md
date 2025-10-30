@@ -6,7 +6,7 @@ CLI-утилита для анализа лог-файлов.
 
 ## Запуск с аргументами
 ```bash
-python main.py --file test.log --keywords "INFO, ERROR"
+python main.py --file data/test.log --keywords "INFO, ERROR"
 ```
 	•	--file FILE - Путь к файлу с логами
 	•	--keywords KEYWORDS - Список ключевых слов через запятую, например: ERROR,WARNING
@@ -33,24 +33,29 @@ make lint   # проверка типизации через mypy
 
 ## Технологии
 	•	Python 3.11+
+    •   logging
 	•	pytest
     •	tabulate
 	•	mypy
+
 
 ## Структура проекта.
 ```commandline
 cli_calculator/
 ├── Makefile
 ├── README.md
-├── __init__.py
 ├── analyzer.py            # Анализатор логов
-├── cli.py                 # CLI-интерфейс (App)
-├── main.py                # Точка входа
-├── args.py                # Парсит аргументы командной строки
+├── core
+│   ├── __init__.py
+│   ├── analyzer.py         # Анализатор логов
+│   └── constants.py
+├── cli.py                  # CLI-интерфейс (App)
+├── main.py                 # Точка входа           
 ├── utils/
 │   ├── __init__.py
-│   └── logger.py          # Настройка логирования
+│   ├── args.py             # Парсит аргументы командной строки            
+│   └── logger.py           # Настройка логирования
 └── tests/
     ├── __init__.py
-    └── test_cli.py  # Юнит-тесты
+    └── test_cli.py          # Юнит-тесты
 ```

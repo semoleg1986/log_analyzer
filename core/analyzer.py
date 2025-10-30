@@ -1,3 +1,8 @@
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
+
+
 class LogAnalyzer:
     """Анализатор логов для подсчёта ошибок, предупреждений и строк."""
 
@@ -12,6 +17,11 @@ class LogAnalyzer:
         """
         self.data = data
         self.keywords = keywords
+        logger.info(
+            "LogAnalyzer инициализирован с %d строками и ключевыми словами: %s",
+            len(data),
+            ", ".join(keywords),
+        )
 
     @property
     def lines(self) -> int:
@@ -27,7 +37,9 @@ class LogAnalyzer:
         :return: Количество строк с указанным словом.
         :rtype: int
         """
-        return sum(1 for line in self.data if keyword.lower() in line.lower())
+        count = sum(1 for line in self.data if keyword.lower() in line.lower())
+        logger.info("Подсчитано %d строк для ключевого слова '%s'", count, keyword)
+        return count
 
     def summary(self) -> dict[str, int]:
         """
@@ -38,4 +50,5 @@ class LogAnalyzer:
         """
         result = {kw: self.count_by_keyword(kw) for kw in self.keywords}
         result["LINES"] = self.lines
+        logger.info("Итоговый summary: %s", result)
         return result
