@@ -3,7 +3,8 @@
 CLI-утилита для анализа лог-файлов.
 
 ---
-2. Запуск с аргументами
+
+## Запуск с аргументами
 ```bash
 python main.py --file test.log --keywords "INFO, ERROR"
 ```
