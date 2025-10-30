@@ -3,11 +3,19 @@
 CLI-утилита для анализа лог-файлов.
 
 ---
-## Запуск
-Интерактивный режим 
+2. Запуск с аргументами
 ```bash
-python main.py
+python main.py --file test.log --keywords "INFO, ERROR"
 ```
+	•	--file FILE - Путь к файлу с логами
+	•	--keywords KEYWORDS - Список ключевых слов через запятую, например: ERROR,WARNING
+
+## Пример вывода
+
+| FILENAME   | INFO    | ERROR | LINES    |
+|------------|---------|-------|----------|
+| test.log   | 4       | 3     | 9        |
+
 
 ## Тесты
 Запуск тестов через pytest:
